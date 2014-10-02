@@ -1,0 +1,95 @@
+<!--
+    @license
+    Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+    <core-countdown time="10"></core-countdown>
+
+@element core-countdown
+@blurb Provides a simple countdown that when loaded starts counding down from start to zero.
+@status alpha
+@homepage http://polymerlabs.github.io/core-countdown
+-->
+<polymer-element name="core-countdown" attributes="time autostart">
+
+  <template>
+
+    <link rel="stylesheet" href="core-countdown.css" />
+    <div>{{count}}</div>
+
+  </template>
+
+  <script>
+
+    Polymer({
+      /**
+       * The `time` attribute sets the countdown start time
+       *
+       * @attribute time
+       * @type number
+       * @default 30
+       */
+      time: 30,
+
+      /**
+       * `count` is a property that holds the current countdown.
+       *
+       * @property count
+       * @type number
+       */
+      count: 0,
+
+      ready: function() {
+        this.count = this.time;
+
+        // TODO: Allow noauto to be a value free attribute
+        if (this.auto !== "no") {
+            this.start();
+        }
+      },
+
+      start: function() {
+        var self = this;
+        function countDown() {
+            self.count -= 1;
+            self.fire('core-countdown-count', self.count);
+            if (self.count > 0) {
+                setTimeout(countDown, 1000);
+            } else {
+                self.fire('core-countdown-ended');
+            }
+        }
+        countDown();
+      }
+
+      /**
+       * The `core-countdown-ended` event is fired whenever the countdown reaches zero.
+       *
+       * @event core-countdown-ended
+       * @param {Object} detail
+       */
+
+      /**
+       * The `core-countdown-count` event is fired whenever the countdown counts down.
+       *
+       * @event core-countdown-count
+       * @param {Object} detail
+       * @param {number} count
+       */
+
+    });
+
+  </script>
+
+</polymer-element>

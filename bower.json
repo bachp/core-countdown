@@ -1,0 +1,27 @@
+{
+  "name": "core-countdown",
+  "version": "0.0.0",
+  "authors": [
+    "Pascal Bach <pascal.bach@nextrem.ch>"
+  ],
+  "description": "Provides a simple countdown that when loaded starts counding down from start to zero.",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "countdown"
+  ],
+  "main": "core-countdown.html",
+  "license": "MIT",
+  "homepage": "https://github.com/pascal-bach/core-countdown/",
+  "ignore": [
+    "/.*",
+    "/tests/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^0.4.1"
+  },
+  "devDependencies": {
+    "web-component-tester": "Polymer/web-component-tester#^0.7.3"
+  }
+}
